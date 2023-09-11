@@ -19,11 +19,15 @@ import org.springframework.web.multipart.MultipartFile;
 
 @RestController
 @RequestMapping("/api")
+@CrossOrigin(origins = "http://localhost:4200")
 public class FileUPController {
 
+    private final FileService fileService;
+
     @Autowired
-    private FileService fileService;  
-    
+    public FileUPController(FileService fileService) {
+        this.fileService = fileService;
+    }
 
     @PostMapping(value = "/files/uploads", consumes = MediaType.MULTIPART_FORM_DATA_VALUE)
     public ResponseEntity<?> uploadFile(@RequestParam("file") MultipartFile file) {
@@ -33,8 +37,10 @@ public class FileUPController {
             return ResponseEntity.ok(savedFile);
         } catch (FileAlreadyExistsException e) {
             return ResponseEntity.badRequest().body(e.getMessage());
+        } catch (IllegalArgumentException e) {
+            return ResponseEntity.badRequest().body(e.getMessage());
         } catch (IOException e) {
-            return ResponseEntity.status(500).body("Falha ao salvar o arquivo devido a erro interno.");
+            return ResponseEntity.status(500).body("Falha ao salvar o arquivo devido a erro interno: " + e.getMessage());
         }
     }
 

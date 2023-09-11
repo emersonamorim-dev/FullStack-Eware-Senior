@@ -1,0 +1,63 @@
+<div class="table-container">
+
+    <mat-table [dataSource]="dataSource">
+    <!-- Nome do Arquivo
+      <mat-table [dataSource]="dataSource">
+    -->
+    <ng-container matColumnDef="fileName">
+      <mat-header-cell *matHeaderCellDef>Nome do Arquivo</mat-header-cell>
+      <mat-cell *matCellDef="let file">{{ file.uploadNome }}</mat-cell>
+    </ng-container>
+
+
+    <!-- Download -->
+    <ng-container matColumnDef="download">
+      <mat-header-cell *matHeaderCellDef>Download</mat-header-cell>
+      <mat-cell *matCellDef="let file">
+        <a mat-button [href]="getDownloadLink(file)" download>
+          <mat-icon>download</mat-icon>
+        </a>
+      </mat-cell>
+    </ng-container>
+
+    <!-- Editar -->
+    <ng-container matColumnDef="edit">
+      <mat-header-cell *matHeaderCellDef>Editar</mat-header-cell>
+      <mat-cell *matCellDef="let file">
+        <button mat-icon-button (click)="editFile(file.uploadId, file.uploadNome)">
+          <mat-icon>edit</mat-icon>
+        </button>
+      </mat-cell>
+    </ng-container>
+
+    <!-- Ver Arquivo -->
+    <ng-container matColumnDef="view">
+      <mat-header-cell *matHeaderCellDef>Ver Arquivo</mat-header-cell>
+      <mat-cell *matCellDef="let file">
+        <button mat-icon-button (click)="viewFile(file)">
+          <mat-icon>pageview</mat-icon>
+        </button>
+      </mat-cell>
+    </ng-container>
+
+    <!-- Deletar -->
+    <ng-container matColumnDef="delete">
+      <mat-header-cell *matHeaderCellDef>Deletar</mat-header-cell>
+      <mat-cell *matCellDef="let file">
+        <button mat-icon-button (click)="deleteFile(file)">
+          <mat-icon>delete</mat-icon>
+        </button>
+      </mat-cell>
+    </ng-container>
+
+    <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
+    <mat-row *matRowDef="let row; columns: displayedColumns;"></mat-row>
+  </mat-table>
+  <mat-paginator [length]="dataSource.data.length"
+               [pageSize]="5"
+               [pageSizeOptions]="[5, 10, 20]"
+               showFirstLastButtons>
+</mat-paginator>
+
+
+</div>

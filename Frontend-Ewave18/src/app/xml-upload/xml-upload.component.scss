@@ -1,0 +1,91 @@
+::ng-deep .mat-tab-label,
+::ng-deep .mat-mdc-tab .mdc-tab__text-label {
+    color: #7b1fa2 !important;
+}
+
+::ng-deep .mat-mdc-header-cell {
+  border-bottom-color: rgba(0, 0, 0, 0.12);
+  border-bottom-width: 1px;
+  border-bottom-style: solid;
+  letter-spacing: normal;
+  font-weight: inherit;
+  line-height: inherit;
+  white-space: nowrap;
+  font-size: 12px;
+  padding: 12px 30px;
+}
+
+.logo-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 180px;
+  width: 100%;
+  background-color: none;
+}
+
+.logo {
+  max-width: 100%;
+  max-height: 100%;
+}
+
+
+.upload-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 10px;
+}
+
+mat-tab-group {
+  width: 100%;
+  max-width: 1200px;
+  margin: 20px auto;
+}
+
+.tab-content {
+  padding: 20px;
+}
+
+mat-icon {
+  cursor: pointer;
+}
+
+.tabs-container {
+  width: 100%;
+  height: 80%;
+  display: flex;
+  justify-content: center;
+
+  .mat-tab-label {
+    flex-basis: 33.33%;
+    max-width: 33.33%;
+    color: #800080;
+
+    &:hover {
+      background-color: #d3d3d3;
+      color: #800080;
+    }
+  }
+
+  .mat-tab-label-active {
+    color: #800080;
+  }
+
+  .mat-ink-bar {
+    background-color: #800080;
+  }
+}
+
+
+// Estilizando o label de mat-tab
+.mat-tab-label {
+  &.mat-tab-label-active {
+    color: #7b1fa2 !important;
+  }
+
+  &:hover {
+    color: #7b1fa2;
+  }
+}
+

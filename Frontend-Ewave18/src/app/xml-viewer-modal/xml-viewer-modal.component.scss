@@ -1,0 +1,50 @@
+.table {
+  width: 100%;
+
+  mat-header-cell,
+  mat-cell {
+    padding: 8px;
+    text-align: left;
+
+  }
+}
+
+
+.mat-dialog-container {
+  width: 90vw;
+  max-width: 90vw;
+  height: 80vh;
+  max-height: 80vh;
+  overflow: auto;
+}
+
+
+.mat-cell {
+  text-align: center;
+}
+
+.mat-cell[mat-column-def="precoMedio"] {
+  text-align: right;
+}
+
+.mat-row {
+  height: 50px;
+}
+
+.mat-cell, mat-header-cell {
+  text-align: center;
+  padding: 8px 16px;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.mat-cell[mat-column-def="precoMedio"], mat-header-cell[mat-column-def="precoMedio"] {
+  text-align: right;
+}
+
+
+.table td > div {
+  margin-bottom: 4px;
+}
+

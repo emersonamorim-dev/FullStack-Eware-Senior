@@ -1,0 +1,82 @@
+.table-container {
+  width: 100%;
+  max-width: 1200px;
+  margin: 20px auto;
+  border-radius: 8px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+  overflow: hidden;
+  background-color: white;
+  height: 70vh;
+  max-height: calc(4 * 68px + 86px); /* 4 linhas de 48px cada + 1 cabeçalho de 56px */
+  overflow-y: auto;
+
+
+  .mat-mdc-table {
+    --mat-table-row-item-outline-width: 1px;
+    white-space: normal;
+    background-color: white;
+    width: 100%;
+    max-width: 1200px;
+  }
+
+  mat-cell:first-of-type, mat-header-cell:first-of-type, mat-footer-cell:first-of-type {
+    padding-left: 24px;
+    padding-right: 60px;
+  }
+
+  mat-table {
+    width: 100%;
+    border-collapse: collapse;
+  }
+
+  .mat-header-cell, mat-cell {
+    padding: 16px;
+    text-align: center;
+    color: #ccc;
+    border-bottom: 1px solid #ccc;
+
+    @media (max-width: 600px) {
+      padding: 12px;
+    }
+  }
+
+  mat-row:hover {
+    background-color: #f3f3f3;
+  }
+
+  mat-header-row {
+    background-color: rgb(74, 200, 58);
+
+  }
+
+
+  button {
+    border: none;
+    background: transparent;
+    cursor: pointer;
+    padding: 0;
+    margin: 0;
+
+    &:focus {
+      outline: none;
+    }
+
+    mat-icon {
+      color: #777;
+    }
+  }
+
+  a {
+    text-decoration: none;
+    color: #777;
+
+    &:hover {
+      text-decoration: none;
+      color: #555;
+    }
+
+    mat-icon {
+      color: #777;
+    }
+  }
+}

@@ -1,0 +1,15 @@
+<h2 mat-dialog-title>Editar Nome do Arquivo</h2>
+<mat-dialog-content>
+  <mat-form-field appearance="fill">
+    <mat-label>Nome do Arquivo</mat-label>
+    <mat-form-field>
+      <input matInput placeholder="Nome do Arquivo" [(ngModel)]="data.uploadNome">
+    </mat-form-field>
+
+
+  </mat-form-field>
+</mat-dialog-content>
+<mat-dialog-actions>
+  <button mat-button (click)="onCancel()">Cancelar</button>
+  <button mat-button (click)="onSave()">Salvar</button>
+</mat-dialog-actions>

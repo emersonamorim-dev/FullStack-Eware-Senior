@@ -1,0 +1,60 @@
+<app-header></app-header>
+<div class="logo-container">
+  <img src="assets/SUPERXML.png" alt="SUPERXML" class="logo"/>
+</div>
+
+<mat-tab-group>
+  <!-- Tab para Upload -->
+  <mat-tab label="Upload">
+    <div class="tab-content">
+      <app-file-list></app-file-list>
+      <!-- Seu componente de upload de arquivo XML aqui -->
+      <div class="upload-container">
+        <input type="file" (change)="onFilesSelected($event)" multiple accept=".xml" hidden #fileInput>
+        <button mat-raised-button color="primary" (click)="fileInput.click()">
+
+          <mat-icon>cloud_upload</mat-icon>
+          Upload de Arquivo XML
+        </button>
+
+        <mat-progress-bar *ngIf="isLoading" mode="indeterminate"></mat-progress-bar>
+      </div>
+    </div>
+  </mat-tab>
+
+  <!-- Tab para Download -->
+  <mat-tab label="Download">
+    <div class="tab-content">
+      <app-file-list></app-file-list>
+      <!-- Lista de arquivos enviados para download -->
+    <!-- New download button -->
+    <div class="upload-container">
+    <button mat-raised-button color="primary" >
+      <mat-icon>cloud_download</mat-icon >
+      Download Arquivo XML
+  </button>
+  </div>
+</div>
+  </mat-tab>
+
+  <!-- Tab para Arquivos -->
+  <mat-tab label="Arquivos" >
+    <div class="tab-content">
+      <!-- Seu componente de lista de arquivos aqui -->
+      <app-file-list></app-file-list>
+      <div class="upload-container">
+      <button mat-raised-button color="primary" (click)="onViewXML()">
+        <mat-icon>pageview</mat-icon>
+        Ver Arquivo XML
+    </button>
+    <pre *ngIf="xmlData">{{ xmlData }}</pre>
+
+  </div>
+  </div>
+  </mat-tab>
+
+</mat-tab-group>
+
+
+
+

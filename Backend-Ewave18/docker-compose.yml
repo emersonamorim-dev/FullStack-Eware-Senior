@@ -1,0 +1,32 @@
+version: '3.7'
+
+services:
+
+  # Serviço da sua aplicação Spring Boot
+  Backend-Ewave:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    ports:
+      - "8081:8080"
+    environment:
+      SPRING_DATASOURCE_URL: jdbc:mysql://mysql:3306/backendewaredb?useSSL=false&allowPublicKeyRetrieval=true
+      SPRING_DATASOURCE_USERNAME: admin
+      SPRING_DATASOURCE_PASSWORD: password
+      SPRING_JPA_HIBERNATE_DDL_AUTO: update
+    depends_on:
+      - mysql
+
+  # Serviço MySQL
+  mysql:
+    image: mysql:8.0
+    environment:
+      MYSQL_ROOT_PASSWORD: password
+      MYSQL_DATABASE: backendewaredb
+    ports:
+      - "3306:3306"
+    volumes:
+      - mysql-data:/var/lib/mysql
+
+volumes:
+  mysql-data:

@@ -203,7 +203,7 @@ O `FileService` é um serviço Spring que lida com operações relacionadas a ar
 
 
 
-## Tecnologias Utilizadas 🛠️
+### Tecnologias Utilizadas 🛠️
 
 - ![Java](https://img.shields.io/badge/-Java-007396?style=flat-square&logo=java&logoColor=white) - Linguagem de programação principal.
 - ![SpringBoot](https://img.shields.io/badge/-SpringBoot-6DB33F?style=flat-square&logo=spring&logoColor=white) - Framework de desenvolvimento para Java.
@@ -223,5 +223,6 @@ Emerson->>Emerson: I am good thanks!
 
 
 
-Desenvolvido por [Emerson Amorim](link_do_seu_perfil_no_GitHub)
+### Desenvolvido por:
+Emerson Amorim
 

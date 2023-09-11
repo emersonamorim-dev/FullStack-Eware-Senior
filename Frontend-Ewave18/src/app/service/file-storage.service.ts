@@ -9,7 +9,7 @@ import { PageResponse } from '../model/PageResponse';
 })
 export class FileStorageService {
 
-  private baseUrl: string = 'http://localhost:4200/api';
+  private baseUrl: string = 'http://localhost:8081/api';
 
   private generateID(): number {
     // Gera um número aleatório entre 10000 e 99999

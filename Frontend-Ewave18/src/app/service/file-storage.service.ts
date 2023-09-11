@@ -1,6 +1,7 @@
-import { HttpClient, HttpHeaders, HttpParams } from '@angular/common/http';
+import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { Observable, catchError, from, of, switchMap, throwError } from 'rxjs';
+import { Observable, from, switchMap, throwError } from 'rxjs';
+import { catchError } from 'rxjs/operators';
 import { FileType } from '../model/FileType';
 import { PageResponse } from '../model/PageResponse';
 
@@ -9,12 +10,8 @@ import { PageResponse } from '../model/PageResponse';
 })
 export class FileStorageService {
 
+  // Pode ser movido para um arquivo de configuração ou variáveis de ambiente.
   private baseUrl: string = 'http://localhost:8081/api';
-
-  private generateID(): number {
-    // Gera um número aleatório entre 10000 e 99999
-    return Math.floor(Math.random() * (99999 - 10000 + 1)) + 10000;
-  }
 
   constructor(private http: HttpClient) { }
 
@@ -24,87 +21,80 @@ export class FileStorageService {
     const formData: FormData = new FormData();
     formData.append('file', file, file.name);
 
-    return this.http.post(`${this.baseUrl}/files/uploads` , formData);
+    return this.http.post(`${this.baseUrl}/files/uploads`, formData)
+      .pipe(catchError(error => this.handleError("Error uploading file:", error)));
   }
 
   public getDownloadUrl(fileName: string): string {
     return `${this.baseUrl}/files/uploads/${fileName}`;
   }
 
-
   public store(file: File): Observable<any> {
     const formData: FormData = new FormData();
     formData.append('file', file, file.name);
 
-    return from(this.readFileAsDataURL(file)).pipe(
-      switchMap(fileBytes => {
-        const fileDetails = {
-          "uploadId": this.generateID(),
-          "uploadNome": file.name,
-          "uploadTipo": file.type,
-          "uploadByte": fileBytes,
-          "uploadUrl": this.getDownloadUrl(file.name)
-        };
+    return from(this.readFileAsDataURL(file))
+      .pipe(
+        switchMap(fileBytes => {
+          // Removi o uploadId já que ele pode não ser único
+          const fileDetails = {
+            "uploadNome": file.name,
+            "uploadTipo": file.type,
+            "uploadByte": fileBytes,
+            "uploadUrl": this.getDownloadUrl(file.name)
+          };
 
-
-        return this.http.post(`${this.baseUrl}/files/uploads`, formData).pipe(
-          catchError(error => {
-            console.error("Error storing file:", error);
-            return throwError(() => error);
-          })
-        );
-      })
-    );
-
+          return this.http.post(`${this.baseUrl}/files/uploads`, formData)
+            .pipe(catchError(error => this.handleError("Error storing file:", error)));
+        })
+      );
   }
 
-private readFileAsDataURL(file: File): Promise<string> {
+  private readFileAsDataURL(file: File): Promise<string> {
     return new Promise((resolve, reject) => {
-        const fileReader = new FileReader();
+      const fileReader = new FileReader();
 
-        fileReader.onload = () => {
-            resolve(String(fileReader.result).split(',')[1]);
-        };
+      fileReader.onload = () => {
+        resolve(String(fileReader.result).split(',')[1]);
+      };
 
-        fileReader.onerror = (error) => {
-            console.error("Error reading file:", error);
-            reject(error);
-        };
+      fileReader.onerror = (error) => {
+        console.error("Error reading file:", error);
+        reject(error);
+      };
 
-        fileReader.readAsDataURL(file);
+      fileReader.readAsDataURL(file);
     });
-}
+  }
 
-
- public getAll(page: number = 0, size: number = 10): Observable<PageResponse<FileType>> {
-  const url = `${this.baseUrl}/files/listar?page=${page}&size=${size}`;
-  return this.http.get<PageResponse<FileType>>(url);
-}
-
+  public getAll(page: number = 0, size: number = 10): Observable<PageResponse<FileType>> {
+    const url = `${this.baseUrl}/files/listar?page=${page}&size=${size}`;
+    return this.http.get<PageResponse<FileType>>(url)
+      .pipe(catchError(error => this.handleError("Error fetching files:", error)));
+  }
 
   public updateFileName(uploadId: number, updatedData: any): Observable<any> {
-    const httpOptions = {
-      headers: new HttpHeaders({
-        'Content-Type': 'application/json'
-      })
-    };
-
-    return this.http.put(`${this.baseUrl}/files/uploads/${uploadId}`, JSON.stringify(updatedData), httpOptions);
+    return this.http.put(`${this.baseUrl}/files/uploads/${uploadId}`, updatedData)
+      .pipe(catchError(error => this.handleError("Error updating file name:", error)));
   }
 
   public delete(uploadId: number): Observable<any> {
-    return this.http.delete(`${this.baseUrl}/files/uploads/${uploadId}`);
+    return this.http.delete(`${this.baseUrl}/files/uploads/${uploadId}`)
+      .pipe(catchError(error => this.handleError("Error deleting file:", error)));
   }
-
 
   public loadXmlDataFromFile(fileUrl: string): Observable<string> {
-    return this.http.get(fileUrl, { responseType: 'text' });
+    return this.http.get(fileUrl, { responseType: 'text' })
+      .pipe(catchError(error => this.handleError("Error loading XML data:", error)));
   }
 
-
-  getLastTableData(): Observable<any> {
-    // O endpoint deve ser configurado para retornar o último arquivo cadastrado
-    return this.http.get(`${this.baseUrl}/files/`);
+  public getLastTableData(): Observable<any> {
+    return this.http.get(`${this.baseUrl}/files/`)
+      .pipe(catchError(error => this.handleError("Error fetching last table data:", error)));
   }
 
+  private handleError(errorMessage: string, error: any): Observable<never> {
+    console.error(errorMessage, error);
+    return throwError(() => error);
+  }
 }

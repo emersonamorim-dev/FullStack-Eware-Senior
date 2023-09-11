@@ -29,7 +29,6 @@ Codificação de um Backend para Teste Eware desenvolvido em Java utilizando o f
 
 
 
-
 ###Sequence Diagram
                     
 ```seq

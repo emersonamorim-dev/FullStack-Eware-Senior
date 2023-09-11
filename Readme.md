@@ -40,5 +40,6 @@ Emerson->>Emerson: I am good thanks!
 
 
 
-Desenvolvido por [Emerson Amorim](link_do_seu_perfil_no_GitHub)
+### Desenvolvido por:
+Emerson Amorim
 

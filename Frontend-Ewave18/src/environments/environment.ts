@@ -4,7 +4,7 @@
 
 export const environment = {
   production: false,
-  apiUrl: 'https://royal-impulse-production.up.railway.app/api'
+  apiUrl: 'http://localhost:4200'
 };
 
 /*

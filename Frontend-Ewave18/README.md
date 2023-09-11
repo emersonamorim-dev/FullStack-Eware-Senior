@@ -58,7 +58,7 @@ cd [nome-do-diretório]
 npm install
 ```
 
-# Execute a aplicação
+### Execute a aplicação
 ```
 ng serve
 ```

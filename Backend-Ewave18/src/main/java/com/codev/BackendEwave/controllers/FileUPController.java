@@ -8,7 +8,7 @@ import com.codev.BackendEwave.services.FileService;
 import java.io.IOException;
 import java.nio.file.FileAlreadyExistsException;
 
-import org.springframework.beans.factory.annotation.Autowired;
+
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
@@ -24,7 +24,6 @@ public class FileUPController {
 
     private final FileService fileService;
 
-    @Autowired
     public FileUPController(FileService fileService) {
         this.fileService = fileService;
     }
@@ -43,6 +42,7 @@ public class FileUPController {
             return ResponseEntity.status(500).body("Falha ao salvar o arquivo devido a erro interno: " + e.getMessage());
         }
     }
+
 
 @GetMapping("/files/listar")
 public Page<UploadedFile> getAllUploads(

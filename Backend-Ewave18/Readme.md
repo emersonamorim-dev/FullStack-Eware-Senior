@@ -20,20 +20,20 @@ Codificação de um Backend para Teste Eware desenvolvido em Java utilizando o f
 ## Como Executar
 
 1. Clone este repositório:
-   ```
-   git clone <url_do_repositório>
-   ```
+```
+git clone <url_do_repositório>
+```
 
 2. Navegue até o diretório do projeto:
-  ```
-   cd <nome_do_diretorio>
-   ```
+```
+cd <nome_do_diretorio>
+```
 
 3. Compile e execute a aplicação usando Maven:
-   ```
-   mvn spring-boot:run
+```
+mvn spring-boot:run
 
-   ```
+```
 
  ####  A aplicação estará rodando na porta 8081.
 

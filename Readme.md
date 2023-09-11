@@ -18,7 +18,7 @@ Codificação de Frontend para Teste EWare de aplicação  que se chama SUPERXML
 
 ### Aplicação Backend Eware - Java e SpringBoot 🚀 🔄 🌐
 
-Codificação de um Backend para Teste Eware desenvolvido em Java utilizando o framework Spring Boot com usso de Banco de dados MySQL para cadastrar os dados e com tabela já criada pronta para subir para gerenciador de Banco de dados. A aplicação é projetada para fornecer uma API RESTful para seus consumidores.
+Codificação de um Backend para Teste Eware desenvolvido em Java utilizando o framework Spring Boot com uso de Banco de dados MySQL para cadastrar os dados e com tabela já criada pronta para subir para gerenciador de Banco de dados. A aplicação é projetada para fornecer uma API RESTful para seus consumidores.
 
 ### Tecnologias Utilizadas 🛠️
 

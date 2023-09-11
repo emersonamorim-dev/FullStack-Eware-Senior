@@ -28,6 +28,7 @@ import java.nio.file.Path;
 
 @RestController
 @RequestMapping("/api")
+@CrossOrigin(origins = "http://localhost:4200")   
 public class FileDownController {
 
     @Autowired

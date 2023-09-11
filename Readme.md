@@ -1,4 +1,4 @@
-### Aplicação FullStack Eware Senior - Java e SpringBoot - Angular Typescipt 🚀 🔄 🌐  
+### Aplicação FullStack Eware Senior - Java e SpringBoot - Angular Typescipt 🚀 🔄 🌐 
 
 Codificação de Aplicação completa a nível Full Stack Senior para teste para empresa TI Eware com integração de Backend com Frontend porgramador em Java e SpringBoot - Angular Typescipt e uso de banco de dados MYSQL.
 A aplicação trata-se de um visualizador de XML que abre um Modal e pode ver todos os dados do arquivo XML.

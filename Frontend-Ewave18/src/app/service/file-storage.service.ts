@@ -67,30 +67,30 @@ export class FileStorageService {
     });
   }
 
-  public getAll(page: number = 0, size: number = 10): Observable<PageResponse<FileType>> {
+    public getAll(page: number = 0, size: number = 10): Observable<PageResponse<FileType>> {
     const url = `${this.baseUrl}/files/listar?page=${page}&size=${size}`;
     return this.http.get<PageResponse<FileType>>(url)
-      .pipe(catchError(error => this.handleError("Error fetching files:", error)));
+      .pipe(catchError(error => this.handleError("Erro ao buscar arquivos:", error)));
   }
 
   public updateFileName(uploadId: number, updatedData: any): Observable<any> {
     return this.http.put(`${this.baseUrl}/files/uploads/${uploadId}`, updatedData)
-      .pipe(catchError(error => this.handleError("Error updating file name:", error)));
+      .pipe(catchError(error => this.handleError("Erro ao atualizar o nome do arquivo:", error)));
   }
 
   public delete(uploadId: number): Observable<any> {
     return this.http.delete(`${this.baseUrl}/files/uploads/${uploadId}`)
-      .pipe(catchError(error => this.handleError("Error deleting file:", error)));
+      .pipe(catchError(error => this.handleError("Erro ao excluir arquivo:", error)));
   }
 
   public loadXmlDataFromFile(fileUrl: string): Observable<string> {
     return this.http.get(fileUrl, { responseType: 'text' })
-      .pipe(catchError(error => this.handleError("Error loading XML data:", error)));
+      .pipe(catchError(error => this.handleError("Erro ao carregar dados XML:", error)));
   }
 
   public getLastTableData(): Observable<any> {
     return this.http.get(`${this.baseUrl}/files/`)
-      .pipe(catchError(error => this.handleError("Error fetching last table data:", error)));
+      .pipe(catchError(error => this.handleError("Erro ao buscar os dados da última tabela:", error)));
   }
 
   private handleError(errorMessage: string, error: any): Observable<never> {
